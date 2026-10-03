@@ -1,4 +1,8 @@
 from django.contrib import admin
+from django.contrib.auth.models import Group
+
+
+admin.site.unregister(Group)
 
 # Register your models here.
 from .models import User, Company, Brand, Collection, Product, Order, OrderProduct, PaymentMethod
