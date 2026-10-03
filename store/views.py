@@ -1,5 +1,5 @@
 from rest_framework import generics
-from rest_framework import viewsets
+from rest_framework import permissions
 
 
 from .models import User, Company, Brand, Collection, Product, Order, OrderProduct, PaymentMethod
@@ -8,12 +8,32 @@ from .serializers import UserSerializer, CompanySerializer, BrandSerializer, Col
 
 # -----------| Users |-----------
 class UsersViewSet(generics.ListCreateAPIView):
+  permission_classes = (
+    permissions.DjangoModelPermissions, 
+  )
+  queryset = User.objects.all()
+  serializer_class = UserSerializer
+    
+class UserViewSet(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (
+      permissions.DjangoModelPermissions, 
+    )
     queryset = User.objects.all()
     serializer_class = UserSerializer
     
-class UserViewSet(generics.RetrieveUpdateDestroyAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+class SalesViewSet(generics.ListCreateAPIView):
+  queryset = User.objects.all()
+  serializer_class = UserSerializer
+  
+  def get_queryset(self):
+    return self.queryset.filter(type='SALES')
+  
+class CustomerViewSet(generics.ListCreateAPIView):
+  queryset = User.objects.all()
+  serializer_class = UserSerializer
+  
+  def get_queryset(self):
+    return self.queryset.filter(type='CUSTOMER')
     
 # -----------| Companies |-----------
 class CompaniesViewSet(generics.ListCreateAPIView):
