@@ -113,6 +113,7 @@ class Order(Base):
   def __str__(self):
     return f'Pedido {self.id} - {self.status}'
   
+  
 class OrderProduct(Base):
   order = models.ForeignKey(Order, related_name='order_products', on_delete=models.CASCADE)
   product = models.ForeignKey(Product, related_name='order_products', on_delete=models.PROTECT)
