@@ -21,14 +21,14 @@ class UserViewSet(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     
-class SalesViewSet(generics.ListCreateAPIView):
+class SalesViewSet(generics.ListAPIView):
   queryset = User.objects.all()
   serializer_class = UserSerializer
   
   def get_queryset(self):
     return self.queryset.filter(type='SALES')
   
-class CustomerViewSet(generics.ListCreateAPIView):
+class CustomerViewSet(generics.ListAPIView):
   queryset = User.objects.all()
   serializer_class = UserSerializer
   

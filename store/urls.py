@@ -6,8 +6,8 @@ urlpatterns = [
   path('user/<int:pk>/', UserViewSet.as_view(), name='user-detail'),
   path('sales/', SalesViewSet.as_view(), name='sale-list'),
   path('customers/', CustomerViewSet.as_view(), name='customer-list'),
-  
-    path('companies/', CompaniesViewSet.as_view(), name='company-list'),
+
+  path('companies/', CompaniesViewSet.as_view(), name='company-list'),
   path('company/<int:pk>/', CompanyViewSet.as_view(), name='company-detail'),
   
   path('brands/', BrandsViewSet.as_view(), name='brand-list'),
